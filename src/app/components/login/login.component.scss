@@ -1,0 +1,49 @@
+.login-form {
+    background-color: #d2cccc;
+    border-radius: 5px;
+    width: 40%;
+    display: block;
+    margin: 100px auto 20px;
+    padding: 20px 5px;
+
+    .input-field,
+    .login-button {
+        width: 80%;
+        margin: 20px auto;
+        display: block;
+    }
+
+    .rlink {
+        margin-left: 10%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1160px) {
+    .login-form {
+        border-radius: 0.636vw;
+        width: 75%;
+        margin: 12.723vw auto 2.545vw;
+        padding: 7.545vw 2.636vw;
+
+        .input-field,
+        .login-button {
+            width: 80%;
+            margin: 2.545vw auto;
+        }
+    }
+}
+
+@media screen and (max-width:767.9px) {
+    .login-form {
+        border-radius: 0.781vw;
+        width: 90%;
+        margin: 15.625vw auto 3.125vw;
+        padding: 15.125vw 1.781vw;
+
+        .input-field,
+        .login-button {
+            width: 80%;
+            margin: 3.125vw auto;
+        }
+    }
+}

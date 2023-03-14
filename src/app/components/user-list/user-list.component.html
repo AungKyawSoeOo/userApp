@@ -1,0 +1,59 @@
+<app-header></app-header>
+<button routerLink="/add_user" routerLinkActive="active-link" mat-raised-button color="primary" class="addUser pc">Add User</button>
+<button routerLink="/add_user" routerLinkActive="active-link" mat-raised-button color="primary" class="addUser sp rounded">+</button>
+<div class="table-container mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="name" class="ngcon">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">NAME</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="mat-cell">{{ user.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">GENDER</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="mat-cell">{{ user.gender }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="teamselect">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">TEAM</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="mat-cell">{{ user.teamselect}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="hobby" class="ngcon">
+      <mat-header-cell *matHeaderCellDef class="mat-header-cell cell-hobby">HOBBY</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="mat-cell cell-hobby">
+        <span class="bull" *ngIf="user.reading">&nbsp;&bull; Reading</span>
+        <span class="bull" *ngIf="user.swimming">&nbsp;&bull; Swimming</span>
+        <span class="bull" *ngIf="user.cooking">&nbsp;&bull; Cooking</span>
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="dob">
+      <mat-header-cell *matHeaderCellDef class="mat-header-cell">DOB</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="mat-cell">{{ datePipe.transform(user.picker, 'yyyy/MM/dd') }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at" class="mat-cell">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        class="mat-header-cell cell-create">CREATED_AT</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="mat-cell cell-create">
+        {{ datePipe.transform(user.created_at, 'yyyy/MM/dd h:mm a')}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-header-cell cell-create" *matHeaderCellDef>ACTIONS</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="mat-cell cell-create">
+        <a mat-icon-button color="primary" [routerLink]="['/edit_user',user.id]">
+          <mat-icon>edit</mat-icon>
+        </a>
+        <button mat-icon-button color="warn" (click)="deleteUser(user)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" class="col"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+</div>
